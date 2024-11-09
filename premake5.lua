@@ -3,6 +3,8 @@ workspace "sdlgame"
 
     architecture "x86_64"
 
+    defines { "_CRT_SECURE_NO_WARNINGS" }
+
     filter "configurations:Debug"
         defines { "DEBUG" }  
         symbols "On"
