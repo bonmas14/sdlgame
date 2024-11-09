@@ -6,6 +6,10 @@
 #include <time.h>
 #include "SDL.h"
 
+#define LOGFILE_NAME "log"
+#define WIDTH        640
+#define HEIGHT       480
+
 FILE *logfile = NULL;
 
 void print_error(const char *message) { 
@@ -13,13 +17,11 @@ void print_error(const char *message) {
     time_t curr     = time(NULL);
     struct tm * utc = gmtime(&curr);
 
-    (void)strftime(buffer, 128, "UTC: %H:%M:%S %m/%d/%y", utc);
+    (void)strftime(buffer, 128, "UTC: %H:%M:%S %d/%m/%y", utc);
 
     fprintf(logfile, "[ERROR (%s)]: %s\n", buffer, message);
 }
 
-#define WIDTH  640
-#define HEIGHT 480
 
 SDL_Window*   window   = NULL;
 SDL_Renderer* renderer = NULL;
@@ -51,7 +53,7 @@ bool loop(void) {
 
 
 int main(int argc, char* argv[]) {
-    logfile = fopen("log.txt", "ab");
+    logfile = fopen(LOGFILE_NAME, "ab");
     if (!logfile) {
         return -100;
     }
