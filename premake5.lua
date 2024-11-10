@@ -5,7 +5,6 @@ workspace "sdlgame"
 
     defines { "_CRT_SECURE_NO_WARNINGS" }
 
-
     filter "configurations:Debug"
         defines { "DEBUG" }  
         symbols "On"
@@ -27,20 +26,22 @@ project "game"
     filter "configurations:Debug"
         targetdir "bin"
         targetsuffix "-d"
+        staticruntime "on"
+        runtime "Debug"
 	libdirs { "./SDL/build/Debug/" }
 	links { "SDL2d", "SDL2maind" }
 
     filter "configurations:Release"
         targetdir "bin"
         targetsuffix "-r"
+        staticruntime "on"
+        runtime "Release"
 	libdirs { "./SDL/build/Release/" }
 	links { "SDL2", "SDL2main" }
 
     filter {}
 
     includedirs { "./SDL/include" }
-     
 
     files { "./src/**.c", "./src/**.h" }
 
-    
