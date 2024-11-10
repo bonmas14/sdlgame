@@ -5,6 +5,7 @@ workspace "sdlgame"
 
     defines { "_CRT_SECURE_NO_WARNINGS" }
 
+
     filter "configurations:Debug"
         defines { "DEBUG" }  
         symbols "On"
@@ -17,11 +18,12 @@ workspace "sdlgame"
     filter {}
 
 project "game"
-    kind "WindowedApp"
+    -- kind "WindowedApp"
+    kind "ConsoleApp"
     language "C"
 
     cdialect "c11"
-
+    flags { "MultiProcessorCompile" }
     filter "configurations:Debug"
         targetdir "bin"
         targetsuffix "-d"
@@ -39,6 +41,6 @@ project "game"
     includedirs { "./SDL/include" }
      
 
-    files { "./src/**.c" }
+    files { "./src/**.c", "./src/**.h" }
 
     
